@@ -5,13 +5,11 @@ import 'mapbox-gl/dist/mapbox-gl.css';
 
 const LocationMap=({lat,lan})=>{
     const [viewState, setViewState] = useState({
-        latitude: lat,
-        longitude: lan,
+        latitude:23.81,
+        longitude:90.41,
         zoom: 8
       });
-      useEffect(()=>{
 
-      },[lat,lan])
   return (
       <div>
     <Map
