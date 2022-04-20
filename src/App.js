@@ -1,10 +1,11 @@
-import logo from './logo.svg';
-import './App.css';
+
+// import './App.css';
 import FormControl from './Form-Control/FormControl';
+import LocationMap from './Map/LocationMap';
 
 function App() {
   return (
-    <div className="App">
+    <div className="">
      <FormControl/>
     </div>
   );
