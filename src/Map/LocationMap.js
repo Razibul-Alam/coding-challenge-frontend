@@ -7,7 +7,8 @@ const LocationMap=({lat,lan})=>{
     const [viewState, setViewState] = useState({
         latitude:23.81,
         longitude:90.41,
-        zoom: 8
+        zoom: 8,
+        pitch:50
       });
 
   return (

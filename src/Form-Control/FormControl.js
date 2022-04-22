@@ -79,7 +79,7 @@ setShowLocation(false)
             <form className='form-control  pb-2' onSubmit={handleSubmit} id="frm">
 
                 <label>Name</label>
-                     <input value={nameText} className='form-control' onChange={handleName} type="text" name="" id="" />
+                     <input value={nameText} className='form-control mt-2' onChange={handleName} type="text" name="" id="" />
                 
                {(nameText&&showList) &&<ul>
                 {users?.map(user=><li onClick={()=>handleShowList(user.name,user.id)}>{user.name}</li>)}
@@ -87,17 +87,17 @@ setShowLocation(false)
                 <br />
                 
                 <label>Id</label>
-                     <input value={id} className='form-control' onChange={handleId} type="text" name="" id="" />
+                     <input value={id} className='form-control mt-2' onChange={handleId} type="text" name="" id="" />
                 <br />
                 <label>Location</label>
-                     <input value={locationText}  className='form-control' onChange={handleLocation}  type="text" name="" id="" />
+                     <input value={locationText}  className='form-control mt-2' onChange={handleLocation}  type="text" name="" id="" />
                 {(locationText&&showLocation) &&<ul>
                 {users?.map(location=><li onClick={()=>handleShowLocation(location.address.city,location.address.geo)}>{location.address.city}</li>)}
                 </ul>}
                 <br />
                 <label>Description</label>
                     
-                     <input className='form-control' value={desc} type="text-area" onChange={handleDesc} name="" id="" />
+                     <input className='form-control mt-2' value={desc} type="text-area" onChange={handleDesc} name="" id="" />
                 <input className='form-control my-3 btn-success' type="submit" value="Submit" />
                 {(error)&&<h6 className='text-center text-danger'>All fields are required</h6>}
             </form>
