@@ -1,8 +1,8 @@
 import React,{useState,useEffect} from 'react';
-import { Form } from 'react-bootstrap';
 import LocationMap from '../Map/LocationMap';
 import"./FormControl.css"
 const FormControl = () => {
+    // declare all state
     const[nameText,setNameText]=useState('')
     const[id,setId]=useState('')
     const[lat,setLat]=useState(23.81)
@@ -10,11 +10,11 @@ const FormControl = () => {
     const[desc,setDesc]=useState('')
     const[locationText,setLocationText]=useState('')
     const[users,setUsers]=useState([])
-    const[locations,setLocations]=useState([])
     const[showList,setShowList]=useState(true)
     const[showLocation,setShowLocation]=useState(true)
     const[error,setError]=useState(false)
 
+// handle all input onchange
     const handleName=(e)=>{
         setNameText(e.target.value)
         setError(false)
@@ -31,6 +31,7 @@ const FormControl = () => {
         setLocationText(e.target.value)
         setError(false)
     }
+    // handle submit form
     const handleSubmit=(e)=>{
         e.preventDefault()
         if(nameText&&locationText&& desc&&id){
@@ -48,23 +49,20 @@ const FormControl = () => {
         }
 
     }
-    console.log(users)
+//    load all users
     useEffect(()=>{
 fetch('https://jsonplaceholder.typicode.com/users')
 .then(res=>res.json())
 .then(data=>setUsers(data))
     },[nameText])
 
-    useEffect(()=>{
-fetch('./Location.json')
-.then(res=>res.json())
-.then(data=>setLocations(data))
-    },[])
+//  handle users list
     const handleShowList=(text,id)=>{
 setNameText(text)
 setId(id)
 setShowList(false)
     }
+// handle location show
     const handleShowLocation=(text,geo)=>{
         console.log(geo)
 setLocationText(text)
@@ -77,34 +75,30 @@ setShowLocation(false)
         <div className='container mt-5'>
         <div className='row'>
         <div className='col-md-6 mt-2'>
-            <h3 className='text-center text-primary'>User Info</h3>
-            <form className='form-control text-center pb-2' onSubmit={handleSubmit} id="frm">
-                <label>
-                    Name
+            <h3 className='text-primary text-center'>User Info</h3>
+            <form className='form-control  pb-2' onSubmit={handleSubmit} id="frm">
+
+                <label>Name</label>
                      <input value={nameText} className='form-control' onChange={handleName} type="text" name="" id="" />
-                </label>
+                
                {(nameText&&showList) &&<ul>
                 {users?.map(user=><li onClick={()=>handleShowList(user.name,user.id)}>{user.name}</li>)}
                 </ul>}
                 <br />
-                <label>
-                    Id
+                
+                <label>Id</label>
                      <input value={id} className='form-control' onChange={handleId} type="text" name="" id="" />
-                </label>
                 <br />
-                <label>
-                    Location
+                <label>Location</label>
                      <input value={locationText}  className='form-control' onChange={handleLocation}  type="text" name="" id="" />
-                </label>
                 {(locationText&&showLocation) &&<ul>
                 {users?.map(location=><li onClick={()=>handleShowLocation(location.address.city,location.address.geo)}>{location.address.city}</li>)}
                 </ul>}
                 <br />
-                <label>
-                    Description
+                <label>Description</label>
+                    
                      <input className='form-control' value={desc} type="text-area" onChange={handleDesc} name="" id="" />
-                </label>
-                <input className='form-control w-50 m-auto my-3' type="submit" value="Submit" />
+                <input className='form-control my-3 btn-success' type="submit" value="Submit" />
                 {(error)&&<h6 className='text-center text-danger'>All fields are required</h6>}
             </form>
             
